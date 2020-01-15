@@ -1,0 +1,23 @@
+{
+  "name": "@varun/clt",
+  "version": "1.0.0",
+  "description": "Word Game",
+  "main": "wg",
+  "scripts": {
+    "test": "echo \\\"no tests\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/varunreddycs/42Words.git"
+  },
+  "keywords": [
+    "word",
+    "game"
+  ],
+  "author": "Varun",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/varunreddycs/42Words/issues"
+  },
+  "homepage": "https://github.com/varunreddycs/42Words#readme"
+}
