@@ -7,9 +7,9 @@ verbosityLevel: 3
 # Specify which application gateway the ingress controller will manage
 #
 appgw:
-    subscriptionId: "f9c2f54d-0c57-45f6-ac45-a36b9d2b4c96"
-    resourceGroup: "Mygroup"
-    name: "Test-Gateway"
+    subscriptionId: f9c2f54d-0c57-45f6-ac45-a36b9d2b4c96
+    resourceGroup: MyGroup
+    name: mytest-agw
     usePrivateIP: false
 
     # Setting appgw.shared to "true" will create an AzureIngressProhibitedTarget CRD.
@@ -31,18 +31,20 @@ appgw:
 #
 # Two authentication methods are available:
 # - Option 1: AAD-Pod-Identity (https://github.com/Azure/aad-pod-identity)
-armAuth:
-    type: servicePrincipal    
-    secretJSON: ewogICJjbGllbnRJZCI6ICJmZjEyN2NkYi02OGY3LTQ5NzQtOGFmZi05ZGVjOWNkMDZmNjgiLAogICJjbGllbnRTZWNyZXQiOiAiNTlmNjIxZDgtZmRmZi00NDkxLThiMjktOTdjZjA3YTIxZWJiIiwKICAic3Vic2NyaXB0aW9uSWQiOiAiZjljMmY1NGQtMGM1Ny00NWY2LWFjNDUtYTM2YjlkMmI0Yzk2IiwKICAidGVuYW50SWQiOiAiZWUxOTM3NDgtMTBjOC00Zjg5LTllNTAtOWE4ZGYwNGZhYjk3IiwKICAiYWN0aXZlRGlyZWN0b3J5RW5kcG9pbnRVcmwiOiAiaHR0cHM6Ly9sb2dpbi5taWNyb3NvZnRvbmxpbmUuY29tIiwKICAicmVzb3VyY2VNYW5hZ2VyRW5kcG9pbnRVcmwiOiAiaHR0cHM6Ly9tYW5hZ2VtZW50LmF6dXJlLmNvbS8iLAogICJhY3RpdmVEaXJlY3RvcnlHcmFwaFJlc291cmNlSWQiOiAiaHR0cHM6Ly9ncmFwaC53aW5kb3dzLm5ldC8iLAogICJzcWxNYW5hZ2VtZW50RW5kcG9pbnRVcmwiOiAiaHR0cHM6Ly9tYW5hZ2VtZW50LmNvcmUud2luZG93cy5uZXQ6ODQ0My8iLAogICJnYWxsZXJ5RW5kcG9pbnRVcmwiOiAiaHR0cHM6Ly9nYWxsZXJ5LmF6dXJlLmNvbS8iLAogICJtYW5hZ2VtZW50RW5kcG9pbnRVcmwiOiAiaHR0cHM6Ly9tYW5hZ2VtZW50LmNvcmUud2luZG93cy5uZXQvIgp9Cg==
-
+#armAuth:
+#   type: aadPodIdentity
+#   identityResourceID: <identityResourceId>
+#   identityClientID:  <identityClientId>
 
 ## Alternatively you can use Service Principal credentials
-# armAuth:
-#    type: servicePrincipal
-#    secretJSON: <<Generate this value with: "az ad sp create-for-rbac --subscription <subscription-uuid> --sdk-auth | base64 -w0" >>
-
+armAuth:
+   type: servicePrincipal
+   secretJSON: ewogICJjbGllbnRJZCI6ICI3N2RhNjAxYy1mYmY0LTQ4MTQtYTAwYy0zMjRmNjk1ZjZjMjciLAogICJjbGllbnRTZWNyZXQiOiAiNGE4MjRmZmEtNjE2Mi00NDcxLTg2NGUtZWIwYWE2ZTkxNjA0IiwKICAic3Vic2NyaXB0aW9uSWQiOiAiZjljMmY1NGQtMGM1Ny00NWY2LWFjNDUtYTM2YjlkMmI0Yzk2IiwKICAidGVuYW50SWQiOiAiZWUxOTM3NDgtMTBjOC00Zjg5LTllNTAtOWE4ZGYwNGZhYjk3IiwKICAiYWN0aXZlRGlyZWN0b3J5RW5kcG9pbnRVcmwiOiAiaHR0cHM6Ly9sb2dpbi5taWNyb3NvZnRvbmxpbmUuY29tIiwKICAicmVzb3VyY2VNYW5hZ2VyRW5kcG9pbnRVcmwiOiAiaHR0cHM6Ly9tYW5hZ2VtZW50LmF6dXJlLmNvbS8iLAogICJhY3RpdmVEaXJlY3RvcnlHcmFwaFJlc291cmNlSWQiOiAiaHR0cHM6Ly9ncmFwaC53aW5kb3dzLm5ldC8iLAogICJzcWxNYW5hZ2VtZW50RW5kcG9pbnRVcmwiOiAiaHR0cHM6Ly9tYW5hZ2VtZW50LmNvcmUud2luZG93cy5uZXQ6ODQ0My8iLAogICJnYWxsZXJ5RW5kcG9pbnRVcmwiOiAiaHR0cHM6Ly9nYWxsZXJ5LmF6dXJlLmNvbS8iLAogICJtYW5hZ2VtZW50RW5kcG9pbnRVcmwiOiAiaHR0cHM6Ly9tYW5hZ2VtZW50LmNvcmUud2luZG93cy5uZXQvIgp9Cg==
 ################################################################################
-# Specify if the cluster izs RBAC enabled or not
+# Specify if the cluster is RBAC enabled or not
 rbac:
     enabled: true # true/false
 
+# Specify aks cluster related information. THIS IS BEING DEPRECATED.
+aksClusterConfiguration:
+    apiServerAddress: mytestcluster-dns-7e5e5467.hcp.koreasouth.azmk8s.io
